@@ -46,19 +46,21 @@ def randomPointOnSphere(r=1., center=(0.,0.,0.)):
 	   True
 	   >>> # xTopFrac, yTopFrac, zTopFrac
 	"""
+	# A sphere surface has two degrees of freedom - so we need two random values.
 	# The surface area of a spherical segment of a unit sphere *only* dependes on its height
 	# (see http://mathworld.wolfram.com/Zone.html),
 	# so when projecting points uniformly distributed on the surface to an axis,
-	# the projected points are uniformly distributed in [-1,1].
+	# the projected points are uniformly distributed in [-1,1] (our first random value).
 	z0 = random.uniform(-1.,1.)
 	r0_xy = math.sqrt(1. - z0*z0)
-	# rotation angle around z-axis
+	# rotation angle around z-axis (our second random value)
 	theta = 2.*math.pi*random.uniform(0., 1.)
 	x0 = r0_xy*math.cos(theta)
 	y0 = r0_xy*math.sin(theta)
 	return (center[0] + r*x0,
 	        center[1] + r*y0,
 	        center[2] + r*z0)
+
 
 def randomPointInsideSphere(r=1., center=(0.,0.,0.)):
 	"""compute random point inside sphere with uniform distribution.
@@ -108,6 +110,7 @@ def randomPointInsideSphere(r=1., center=(0.,0.,0.)):
 	   True
 	   >>> # xTopFrac, yTopFrac, zTopFrac
 	"""
+	# simply compute random points in [-1,1]^3 until the point is inside the unit sphere:
 	done = False
 	while not done:
 		p0 = random.uniform(-1.,1.), random.uniform(-1.,1.), random.uniform(-1.,1.)
@@ -115,6 +118,7 @@ def randomPointInsideSphere(r=1., center=(0.,0.,0.)):
 	return (center[0] + r*p0[0],
 	        center[1] + r*p0[1],
 	        center[2] + r*p0[2])
+
 
 if __name__ == "__main__":
 	import doctest
