@@ -4,19 +4,24 @@ import random
 def randomPointOnSphere(r=1., center=(0.,0.,0.)):
 	"""compute random point on sphere with uniform distribution on surface.
 
+	   Usage can be as simple as that:
 	   >>> p = randomPointOnSphere()
+	   We expect a point with 3 coordinates and distance 1 from the origin:
 	   >>> len(p) # three coordinates
 	   3
 	   >>> r2 = sum(c*c for c in p) # radius squared
 	   >>> round(r2, 10)
 	   1.0
 
+	   Scaling (i.e. having a radius different from 1) ...
 	   >>> r = 2
 	   >>> p = randomPointOnSphere(r)
 	   >>> r2 = sum(c*c for c in p) # radius squared
 	   >>> round(r2, 10)
 	   4.0
 
+	   ... and shifting (i.e. specifying a center different from the origin)
+	   is also possible.
 	   >>> center = (1,-1,2)
 	   >>> p = randomPointOnSphere(center=center)
 	   >>> p0 = (c-center[i] for i,c in enumerate(p)) # subtract center
@@ -24,9 +29,10 @@ def randomPointOnSphere(r=1., center=(0.,0.,0.)):
 	   >>> round(r2, 10)
 	   1.0
 
-	   Let's test for uniform distribution:
+	   Let's test for uniform distribution by computing a bunch of random points:
 	   >>> n = 2000
 	   >>> pl = [randomPointOnSphere() for _ in range(n)]
+	   Counting points in a cap of r/2 = 0.5 should yield roughly a quarter (0.25):
 	   >>> xTopFrac = sum(p[0]>0.5 for p in pl)/n
 	   >>> 0.2 < xTopFrac < 0.3
 	   True
