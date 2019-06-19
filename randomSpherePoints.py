@@ -6,6 +6,7 @@ def randomPointOnSphere(r=1., center=(0.,0.,0.)):
 
 	   Usage can be as simple as that:
 	   >>> p = randomPointOnSphere()
+
 	   We expect a point with 3 coordinates and distance 1 from the origin:
 	   >>> len(p) # three coordinates
 	   3
@@ -32,6 +33,7 @@ def randomPointOnSphere(r=1., center=(0.,0.,0.)):
 	   Let's test for uniform distribution by computing a bunch of random points:
 	   >>> n = 2000
 	   >>> pl = [randomPointOnSphere() for _ in range(n)]
+
 	   Counting points in a cap of r/2 = 0.5 should yield roughly a quarter (0.25):
 	   >>> xTopFrac = sum(p[0]>0.5 for p in pl)/n
 	   >>> 0.2 < xTopFrac < 0.3
