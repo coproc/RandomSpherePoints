@@ -11,7 +11,7 @@ def randomPointOnSphere(r=1., center=(0.,0.,0.)):
 	   >>> round(r2, 10)
 	   1.0
 
-       >>> r = 2
+	   >>> r = 2
 	   >>> p = randomPointOnSphere(r)
 	   >>> r2 = sum(c*c for c in p) # radius squared
 	   >>> round(r2, 10)
@@ -62,7 +62,7 @@ def randomPointInsideSphere(r=1., center=(0.,0.,0.)):
 	   >>> r2 <= 1.0
 	   True
 
-       >>> r = 2
+	   >>> r = 2
 	   >>> n = 1000
 	   >>> pl = [randomPointInsideSphere(r) for _ in range(n)]
 	   >>> r2l = [sum(c*c for c in p) for p in pl] # list of radius squared
